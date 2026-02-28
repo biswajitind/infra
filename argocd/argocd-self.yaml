@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd-self
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  source:
+    repoURL: https://argoproj.github.io/argo-helm
+    chart: argo-cd
+    targetRevision: 7.0.0
+    helm:
+      values: |
+        # minimal example; move real overrides into Git if you prefer
+        server:
+          service:
+            type: ClusterIP
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
