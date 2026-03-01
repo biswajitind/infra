@@ -8,14 +8,21 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
-  source:
-    repoURL: https://argoproj.github.io/argo-helm
-    chart: argo-cd
-    targetRevision: 7.0.0
-    helm:
-      values: |
-        # minimal example; move real overrides into Git if you prefer
-        server:
-          service:
-            type: ClusterIP
+  sources:
+    - repoURL: https://argoproj.github.io/argo-helm
+      chart: argo-cd
+      targetRevision: 7.0.0
+      helm:
+        values: |
+          # minimal example; move real overrides into Git if you prefer
+          server:
+            service:
+              type: ClusterIP
+
+    # 2) Your Git repo (values + app manifest)
+    - repoURL: https://github.com/biswajitind/infra.git
+      targetRevision: main
+      path: infra/monitoring
+      ref: values
+
   syncPolicy: {}
