@@ -22,7 +22,7 @@ spec:
     # 2) Your Git repo (values + app manifest)
     - repoURL: https://github.com/biswajitind/infra.git
       targetRevision: main
-      path: infra/monitoring
+      path: argocd
       ref: values
 
   syncPolicy: {}
