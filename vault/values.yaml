@@ -1,0 +1,10 @@
+server:
+  dev:
+    enabled: true   # For lab only (NOT production)
+
+  service:
+    type: NodePort
+    nodePort: 30200
+
+ui:
+  enabled: true
