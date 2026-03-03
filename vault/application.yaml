@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: vault
-  namespace: argocd
+  namespace: vault
 spec:
   project: default
   destination:
@@ -16,13 +16,9 @@ spec:
         valueFiles:
           - $values/vault/values.yaml
 
-    - repoURL: https://github.com/<your-org>/<your-gitops-repo>
+    - repoURL: https://github.com/biswajitind/infra.git
       targetRevision: main
-      ref: values
+      path: vault
+      ref: values      
 
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+  syncPolicy: {}
