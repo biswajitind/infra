@@ -1,0 +1,19 @@
+# Expose Argo CD UI/API via NodePort
+server:
+  service:
+    type: NodePort
+    nodePortHttp: 30080
+    nodePortHttps: 30443
+
+  # optional but common
+  extraArgs:
+    - --insecure  # only if you terminate TLS elsewhere; remove if you want https end-to-end
+
+# optional: keep it small at home labs; remove for prod sizing
+redis:
+  enabled: true
+
+configs:
+  params:
+    # example: reduce noisy warnings in some envs
+    server.disable.auth: "false"
