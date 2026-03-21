@@ -1,0 +1,46 @@
+nameOverride: ""
+fullnameOverride: ""
+
+app:
+  replicaCount: 1
+  image:
+    repository: docker.io/YOUR_DOCKERHUB_USER/streamlit-mysql-app
+    tag: "0.1.0"
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 8501
+  resources: {}
+  env:
+    dbName: appdb
+    dbUser: appuser
+  ingress:
+    enabled: false
+    className: ""
+    annotations: {}
+    hosts:
+      - host: streamlit.local
+        paths:
+          - path: /
+            pathType: Prefix
+    tls: []
+
+mysql:
+  image:
+    repository: mysql
+    tag: "8.4"
+    pullPolicy: IfNotPresent
+  auth:
+    rootPassword: rootpassword
+    database: appdb
+    username: appuser
+    password: apppassword
+  service:
+    port: 3306
+  persistence:
+    enabled: true
+    accessModes:
+      - ReadWriteOnce
+    size: 1Gi
+    storageClass: ""
+  resources: {}

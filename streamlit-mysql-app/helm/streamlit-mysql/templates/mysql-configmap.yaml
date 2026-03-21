@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "streamlit-mysql.fullname" . }}-mysql-init
+  labels:
+    {{- include "streamlit-mysql.labels" . | nindent 4 }}
+data:
+  init.sql: |
+    CREATE DATABASE IF NOT EXISTS {{ .Values.mysql.auth.database }};
+    CREATE USER IF NOT EXISTS '{{ .Values.mysql.auth.username }}'@'%' IDENTIFIED BY '{{ .Values.mysql.auth.password }}';
+    GRANT ALL PRIVILEGES ON {{ .Values.mysql.auth.database }}.* TO '{{ .Values.mysql.auth.username }}'@'%';
+    FLUSH PRIVILEGES;

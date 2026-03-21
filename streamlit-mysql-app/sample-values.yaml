@@ -1,0 +1,31 @@
+app:
+  image:
+    repository: docker.io/biswajitdash/streamlit-mysql-app
+    tag: "0.1.0"
+  service:
+    type: NodePort
+  ingress:
+    enabled: false
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+mysql:
+  auth:
+    rootPassword: change-me-root
+    database: salesdb
+    username: salesuser
+    password: change-me-app
+  persistence:
+    size: 2Gi
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
