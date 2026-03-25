@@ -1,29 +1,25 @@
-apiVersion: argoproj.io/v1alpha1
+iapiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: monitoring
+  name: kube-prometheus-stack
   namespace: argocd
 spec:
   project: default
+  sources:
+    - repoURL: https://prometheus-community.github.io/helm-charts
+      chart: kube-prometheus-stack
+      targetRevision: 82.14.1
+      helm:
+        valueFiles:
+          - $values/monitoring/values.yaml
+
+    - repoURL: https://github.com/biswajitind/infra.git
+      targetRevision: main
+      ref: values
+
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
-
-  sources:
-    # 1) Helm chart (upstream)
-    - repoURL: https://prometheus-community.github.io/helm-charts
-      chart: kube-prometheus-stack
-      targetRevision: 65.3.2          # pin a fixed chart version
-      helm:
-        releaseName: monitoring
-        valueFiles:
-          - $values/apps/monitoring/values.yaml
-
-    # 2) Your Git repo (values + app manifest)
-    - repoURL: https://github.com/biswajitind/infra.git
-      targetRevision: main
-      path: monitoring
-      ref: values
 
   syncPolicy: {}
 

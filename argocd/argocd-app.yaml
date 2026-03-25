@@ -11,7 +11,7 @@ spec:
       targetRevision: 9.1.0
       helm:
         valueFiles:
-          - $values/infra/argocd/values.yaml
+          - $values/argocd/values.yaml
     - repoURL: https://github.com/biswajitind/infra.git
       targetRevision: main
       ref: values
