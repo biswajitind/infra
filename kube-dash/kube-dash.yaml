@@ -11,7 +11,7 @@ spec:
       path: charts/kubernetes-dashboard
       helm:
         valueFiles:
-          - $values/monitoring/dashboard-values.yaml
+          - $values/kube-dash/values.yaml
 
     - repoURL: https://github.com/biswajitind/infra.git
       targetRevision: main
