@@ -5,19 +5,19 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: https://github.com/biswajitind/infra.git
-    targetRevision: main
-    path: argocd
-    helm:
+  sources:
+    - repoURL: https://argoproj.github.io/argo-helm
       chart: argo-cd
-      repoURL: https://argoproj.github.io/argo-helm
-      valueFiles:
-        - values.yaml
-    targetRevision: 9.1.0
+      targetRevision: 9.1.0
+      helm:
+        valueFiles:
+          - $values/infra/argocd/values.yaml
+    - repoURL: https://github.com/biswajitind/infra.git
+      targetRevision: main
+      ref: values
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
-  syncPolicy: {}
-  syncOptions:
-    - CreateNamespace=true
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
