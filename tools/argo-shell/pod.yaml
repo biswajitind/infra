@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubectl-shell
+  namespace: default
+  labels:
+    app: kubectl-shell
+spec:
+  serviceAccountName: default
+  containers:
+    - name: kubectl
+      image: bitnami/kubectl:latest
+      command: ["/bin/sh", "-c"]
+      args:
+        - sleep infinity
+      stdin: true
+      tty: true
