@@ -1,5 +1,3 @@
-server:
-  service:
-    type: NodePort
-    nodePortHttp: 32080
-    nodePortHttps: 32443
+configs:
+  secret:
+    argocdServerAdminPassword : $2a$10$z3J1mlHRgfzxZH7iFSShneOTZSdvgjMXhbUb1UZVyapUUIclwaM2G
