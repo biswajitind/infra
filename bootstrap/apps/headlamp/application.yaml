@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: headlamp
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: headlamp
+  sources:
+    - repoURL: https://kubernetes-sigs.github.io/headlamp/
+      chart: headlamp
+      targetRevision: 0.41.0
+      helm:
+        valueFiles:
+        - $values/bootstrap/apps/headlamp-values.yaml
+
+    - repoURL: https://github.com/biswajitind/infra.git
+      targetRevision: main
+      ref: values        
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
