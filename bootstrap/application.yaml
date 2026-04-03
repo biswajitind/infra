@@ -1,0 +1,2 @@
+# This is the app of app CRD which needs to be applied once.
+# after ArgoCD is deployed.
