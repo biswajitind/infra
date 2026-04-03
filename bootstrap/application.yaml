@@ -10,7 +10,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/YOUR_ORG/YOUR_REPO.git
+    repoURL: https://github.com/biswajitind/infra.git
     targetRevision: main
     path: bootstrap/apps
 

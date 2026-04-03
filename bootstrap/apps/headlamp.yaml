@@ -8,13 +8,17 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: headlamp
-  source:
-    repoURL: https://kubernetes-sigs.github.io/headlamp/
-    chart: headlamp
-    targetRevision: 0.41.0
-    helm:
-      valueFiles:
-        - values.yaml
+  sources:
+    - repoURL: https://kubernetes-sigs.github.io/headlamp/
+      chart: headlamp
+      targetRevision: 0.41.0
+      helm:
+        valueFiles:
+        - $values/bootstrap/apps/headlamp-values.yaml
+
+    - repoURL: https://github.com/biswajitind/infra.git
+      targetRevision: main
+      ref: values        
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
