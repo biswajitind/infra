@@ -5,6 +5,12 @@ metadata:
   namespace: argocd
 spec:
   project: default
+  ignoreDifferences:
+    - kind: Secret
+      name: kube-prometheus-stack-grafana
+      namespace: argocd
+      jsonPointers:
+        - /data/admin-password
   sources:
     - repoURL: https://prometheus-community.github.io/helm-charts
       chart: kube-prometheus-stack
