@@ -1,0 +1,22 @@
+controller:
+  service:
+    type: ClusterIP   # for port-forward home lab
+
+  ingressClassResource:
+    name: nginx
+    enabled: true
+    default: true
+
+  ingressClass: nginx
+  watchIngressWithoutClass: false
+
+  # Let helm create everything
+  serviceAccount:
+    create: true
+
+rbac:
+  create: true
+
+# optional but useful
+defaultBackend:
+  enabled: true
