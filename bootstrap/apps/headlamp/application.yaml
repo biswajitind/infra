@@ -14,7 +14,7 @@ spec:
       targetRevision: 0.41.0
       helm:
         valueFiles:
-        - $values/bootstrap/apps/headlamp-values.yaml
+        - $values/bootstrap/apps/headlamp/values.yaml
 
     - repoURL: https://github.com/biswajitind/infra.git
       targetRevision: main
