@@ -6,14 +6,17 @@ metadata:
 spec:
   project: default
 
-  source:
-    repoURL: https://github.com/biswajitind/infra.git
-    targetRevision: main
-    path: bootstrap/apps/ingress-nginx   # folder where values.yaml exists
+  sources:
+    - repoURL: https://kubernetes.github.io/ingress-nginx
+      chart: ingress-nginx
+      targetRevision: 4.15.1
+      helm:
+        valueFiles:
+          - $values/bootstrap/apps/ingress-nginx/values.yaml
 
-    helm:
-      valueFiles:
-        - values.yaml
+    - repoURL: https://github.com/biswajitind/infra.git
+      targetRevision: main
+      ref: values
 
   destination:
     server: https://kubernetes.default.svc
