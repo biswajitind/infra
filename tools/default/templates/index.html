@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Ingress URLs</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; }
+    h1 { margin-bottom: 1rem; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background: #f5f5f5; }
+    a { text-decoration: none; color: #0366d6; }
+  </style>
+</head>
+<body>
+  <h1>Ingress URLs</h1>
+
+  {% if urls %}
+  <table>
+    <thead>
+      <tr>
+        <th>Namespace</th>
+        <th>Ingress</th>
+        <th>Host</th>
+        <th>Path</th>
+        <th>URL</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in urls %}
+      <tr>
+        <td>{{ item.namespace }}</td>
+        <td>{{ item.ingress }}</td>
+        <td>{{ item.host }}</td>
+        <td>{{ item.path }}</td>
+        <td><a href="{{ item.url }}" target="_blank">{{ item.url }}</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <p>No ingress entries found.</p>
+  {% endif %}
+</body>
+</html>
