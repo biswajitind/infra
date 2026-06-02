@@ -1,6 +1,6 @@
 configs:
   secret:
-    argocdServerAdminPassword : $2a$10$z3J1mlHRgfzxZH7iFSShneOTZSdvgjMXhbUb1UZVyapUUIclwaM2G
+    argocdServerAdminPassword : $2a$10$WAly8FK0B.xT3QNsBTppfOzK7L45tv6a/xnnecjhtjLnYh2yFA2H6
 
   cm:
     exec.enabled: "true"
